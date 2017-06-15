@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>hui</groupId>
+		<artifactId>learn</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<groupId>learn</groupId>
+	<artifactId>memcached</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<!-- memcached 依赖-->
+	<dependency>
+		<groupId>com.google.code.simple-spring-memcached</groupId>
+		<artifactId>xmemcached-provider</artifactId>
+		<version>3.6.1</version>
+	</dependency>
+	<dependency>
+		<groupId>com.google.code.simple-spring-memcached</groupId>
+		<artifactId>spring-cache</artifactId>
+		<version>3.6.1</version>
+	</dependency>
+
+
+
+	<dependencies>
+		<dependency>
+			<groupId>com.btmatthews.springboot</groupId>
+			<artifactId>memcached-spring-boot-starter</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+	</dependencies>
+
+
+
+</project>
