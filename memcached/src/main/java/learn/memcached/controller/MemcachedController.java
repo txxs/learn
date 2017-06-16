@@ -18,6 +18,6 @@ public class MemcachedController {
 
     @RequestMapping("/testMem")
     public String testMem(){
-        return  memcachedService.testMem("key");
+        return  memcachedService.getMem("key1");
     }
 }
