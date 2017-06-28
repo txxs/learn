@@ -21,36 +21,21 @@ import java.net.UnknownHostException;
 @Component
 public class RetryHandler implements HttpRequestRetryHandler {
 
-        @Override
-        public boolean retryRequest(IOException exception, int executionCount, HttpContext context){
-            if (executionCount >= 5) {
-                // Do not retry if over max retry count
-                return false;
-            }
-            if (exception instanceof InterruptedIOException) {
-                // Timeout
-                return false;
-            }
-            if (exception instanceof UnknownHostException) {
-                // Unknown host  修改代码让不识别主机时重试，实际业务当不识别的时候不应该重试，再次为了演示重试过程，执行会显示5次下面的输出
-                System.out.println("不识别主机重试");
-                return true;
-            }
-            if (exception instanceof ConnectTimeoutException) {
-                // Connection refused
-                return false;
-            }
-            if (exception instanceof SSLException) {
-                // SSL handshake exception
-                return false;
-            }
-            HttpClientContext clientContext = HttpClientContext.adapt(context);
-            HttpRequest request = clientContext.getRequest();
-            boolean idempotent = !(request instanceof HttpEntityEnclosingRequest);
-            if (idempotent) {
-                // Retry if the request is considered idempotent
-                return true;
-            }
+    @Override
+    public boolean retryRequest(IOException exception, int executionCount, HttpContext context){
+        if (executionCount >= 5) {
             return false;
         }
+        if (exception instanceof IOException) {
+            System.out.println("超时和其他异常都是在IO异常下的，为处理所有异常，抛出此异常！");
+            return true;
+        }
+        HttpClientContext clientContext = HttpClientContext.adapt(context);
+        HttpRequest request = clientContext.getRequest();
+        boolean idempotent = !(request instanceof HttpEntityEnclosingRequest);
+        if (idempotent) {
+            return true;
+        }
+        return false;
+    }
 }

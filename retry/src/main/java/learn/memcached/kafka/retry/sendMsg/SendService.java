@@ -2,7 +2,9 @@ package learn.memcached.kafka.retry.sendMsg;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -20,16 +22,25 @@ import java.io.IOException;
 @Service
 public class SendService {
 
+    public static final int timeout = 3000;
+
     @Autowired
     private RetryHandler retryHandler;
 
-    public void sendMsg(){
+    public void sendMsg() throws Exception{
+        RequestConfig config = RequestConfig.custom()
+                .setConnectTimeout(timeout)
+                .setConnectionRequestTimeout(timeout)
+                .setSocketTimeout(timeout).build();
+
         CloseableHttpClient httpClient = HttpClients.custom()
+                .setDefaultRequestConfig(config)
                 .setRetryHandler(retryHandler)
                 .build();
-        HttpGet httpGet = new HttpGet("http://www.begincodee.net");  //不存在的域名
+        HttpPost httpPost = new HttpPost("http://localhost:8080/v1/postData");  //不存在的域名
+
         try{
-            HttpResponse response =  httpClient.execute(httpGet, HttpClientContext.create());
+            HttpResponse response =  httpClient.execute(httpPost, HttpClientContext.create());
             HttpEntity entity = response.getEntity();
             System.out.println(EntityUtils.toString(entity));
         }catch(IOException e){

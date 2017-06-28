@@ -16,7 +16,7 @@ public class SendController {
     private SendService sendService;
 
     @RequestMapping("/sendMsg")
-    public void sendMsg(){
+    public void sendMsg()throws Exception{
         sendService.sendMsg();
     }
 }

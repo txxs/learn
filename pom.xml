@@ -12,7 +12,8 @@
 		<module>redis</module>
 		<module>rabbit</module>
 		<module>zookeeperlock</module>
-	</modules>
+        <module>spring-boot-memcached-starter</module>
+    </modules>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
