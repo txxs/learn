@@ -16,14 +16,16 @@ import java.util.List;
 @Repository
 public class CountRespository {
 
-    @Autowired
-    private CountMapper countMapper;
+//    @Autowired
+//    private CountMapper countMapper;
 
     public List<Count> getCountList(){
-        return countMapper.getCountList();
+        //return countMapper.getCountList();
+        return null;
     }
 
     public Integer updateOneCount(Integer id){
-        return countMapper.updateOneCount(id);
+        //return countMapper.updateOneCount(id);
+        return null;
     }
 }

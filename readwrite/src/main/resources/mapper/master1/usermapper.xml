@@ -18,8 +18,8 @@
         user
     </select>
 
+
     <update id="updateOneUser" parameterType="java.lang.Integer">
         UPDATE count set address = "updatenew"} where id = #{0}
     </update>
-
 </mapper>

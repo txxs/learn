@@ -19,14 +19,14 @@ import javax.sql.DataSource;
  * @Date: 2017/6/28
  * @Time:10:59
  */
-@Configuration
+/*@Configuration
 // 扫描 Mapper 接口并容器管理
-@MapperScan(basePackages = Master1DataSourceConfig.PACKAGE, sqlSessionFactoryRef = "master1SqlSessionFactory")
+@MapperScan(basePackages = Master1DataSourceConfig.PACKAGE, sqlSessionFactoryRef = "master1SqlSessionFactory")*/
 public class Master1DataSourceConfig {
-
+/*
     // 精确到 master 目录，以便跟其他数据源隔离
     static final String PACKAGE = "com.hui.readwrite.mapper.master1";
-    static final String MAPPER_LOCATION = "classpath:mapper/master1/*.xml";
+    static final String MAPPER_LOCATION = "classpath:mapper/master1*//*.xml";
 
     @Value("${master1.datasource.url}")
     private String url;
@@ -66,5 +66,5 @@ public class Master1DataSourceConfig {
         sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver()
                 .getResources(Master1DataSourceConfig.MAPPER_LOCATION));
         return sessionFactory.getObject();
-    }
+    }*/
 }
